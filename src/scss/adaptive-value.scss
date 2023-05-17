@@ -1,0 +1,68 @@
+@use "sass:math"; //испльзование math для вычислений
+
+$maxWidth: 1190; //Ширина ограничевающего контейнера
+$psdWidth: 1600; //Ширина макета
+
+//Брейкпоинты --------------------------------
+$container: $maxWidth + 12; //первый
+$tablet: 991.98; //Планешеты
+$mobile: 767.98; //Телефон
+$mobileSmall: 479.98; // маленькие телефоны
+//-------------------------------------------
+
+//Адаптивный миксин--------------------------
+@mixin adaptive-value($property, $startSize, $minSize, $type: 1) {
+  $addsize: $startSize - $minSize;
+  @if $type==1 {
+    #{$property}: $startSize + px;
+    @media (max-width: #{$maxWidth + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$addsize} *
+          ((100vw - 320px) / (#{$maxWidth - 320}))
+      );
+    }
+  }
+  @if $type==2 {
+    #{$property}: $startSize + px;
+    @media (min-width: #{$maxWidth + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$addsize} *
+          ((100vw - 320px) / (#{$psdWidth - 320}))
+      );
+    }
+  } @else if $type==3 {
+    #{$property}: calc(
+      #{$minSize + px} + #{$addsize} * ((100vw - 320px) / (#{$maxWidth - 320}))
+    );
+  }
+}
+//-----------------------------------------
+$bodyFontSize: 16; //Возможно указать 16 (Используется для вычисления rem)
+
+
+//Вспомогательные величины--------------------------------------------------
+
+//Проценты--------------------
+//Вычисляем процетны
+@function percent($blockWidth, $parentWidth) {
+  $result: math.div($blockWidth, $parentWidth) * 100%;
+  @return $result;
+}
+//-----------------------------
+
+//em-----------------
+//Нужный размер по макету ( например, оступ вниз, делим на размер шрифта)
+@function em($psdValue, $fontSizeValue) {
+  $result: math.div($psdValue, $fontSizeValue) + em;
+  @return $result;
+}
+//-------------------
+
+//rem--------------------------
+@function rem($px) {
+  $result: math.div($px, $bodyFontSize) + rem;
+  @return $result;
+}
+//----------------------------
+
+//-----------------------------------------------------------------------------

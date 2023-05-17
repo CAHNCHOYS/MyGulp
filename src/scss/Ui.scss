@@ -1,0 +1,188 @@
+//Общие стили
+// Применимые к нескольким блокам
+
+
+//Адаптивные изображения-------------------
+._ibg {
+  position: relative;
+
+ 
+
+  img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+  
+  &_c {
+    img {
+      object-fit: contain;
+    }
+  }
+}
+
+.bg-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+//-------------------------------------
+
+
+//Работа со сполерами ---------------------------------------
+
+[data-spollers] {
+  button[data-spoller] {
+    width: 100%;
+    background-color: transparent;
+    text-align: left;
+    display: block;
+    cursor: auto;
+  }
+}
+
+._init {
+  //Стиль спойлеров
+  [data-spoller] {
+    padding: 0px 20px 0px 0px;
+    cursor: pointer;
+    position: relative;
+    &._active {
+      &::before {
+        transform: rotate(0deg);
+      }
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      z-index: 2;
+      position: absolute;
+      width: 15px;
+      display: inline-block;
+      height: 2px;
+      background-color: black; //Цвет
+      top: 50%;
+      display: block;
+      transition: all 0.8s ease 0s;
+    }
+
+    &::after {
+      right: 4px;
+    }
+
+    &::before {
+      right: 4px;
+      transform: rotate(90deg);
+    }
+
+    &:not(._active){
+      margin-bottom: 0px;
+      }
+  }
+
+  button[data-spoller] {
+    cursor: pointer;
+  }
+}
+
+//----------------------------------------------------------------------
+
+//Убираем неактивные табы
+
+.tab {
+  display: none;
+  &.current {
+    display: block; //Показываем активный таб
+  }
+}
+
+/*-------------------------------------------------------
+						 Варианты анимации
+ ---------------------------------------------------------*/
+
+.transformL {
+  transform: translate(-100%, 0);
+  opacity: 0;
+
+  &._anim,
+  ._anim & {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+.transformT {
+  transform: translate(0, -100%);
+  opacity: 0;
+
+  &._anim,
+  ._anim & {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+.transformR {
+  transform: translate(100%, 0);
+  opacity: 0;
+
+  &._anim,
+  ._anim & {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+.transformB {
+  transform: translate(0, 100%);
+  opacity: 0;
+
+  &._anim,
+  ._anim & {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+.scale {
+  transform: scale(0);
+  opacity: 0;
+
+  &._anim,
+  ._anim & {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/*-------------------------------------------------------
+						 Варианты анимации конец
+ ---------------------------------------------------------*/
+
+.fade {
+  opacity: 0;
+
+  &._anim {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+/*-------------------------------------------------------------------
+									 Твои классы
+ --------------------------------------------------------------------*/

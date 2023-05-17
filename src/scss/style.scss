@@ -1,0 +1,60 @@
+//Подключение обнуляющего стиля==========
+@import "nullstyle.scss";
+@import "adaptive-value.scss";
+//Подключение шрифтов===================================
+
+//Иконочный шрифт потом преместить в папку Fonts
+// @font-face {
+//    font-family: 'icons';
+
+//    src:
+
+//      url('../fonts/icons.woff') format('woff'),
+//      url('../fonts/icons.woff2#woff2') format('woff2');
+
+//    font-weight: normal;
+//    font-style: normal;
+//    font-display: block;
+//  }
+
+//================================
+
+@import "./Ui.scss"; //Подключение общих стилей
+
+html {
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+  min-width: 320px;
+  &._isLocked {
+    overflow: hidden;
+  }
+}
+
+.container {
+  //Если верстка с исп относительных единиц
+  // max-width: rem(1200); // + отступы слева справа
+  //Если нет
+  //	max-width: 1200px;
+  margin: 0px auto;
+  padding: 0px 15px;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100%;
+  //Если нужен фуллскрин блок то min-height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+// Прижать футер к низу страницы-------------------------------
+.page {
+  flex: 1 0 auto;
+}
+footer {
+  flex: 0 0 auto;
+}
+//---------------------------------------
